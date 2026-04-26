@@ -1,11 +1,32 @@
-<div class="container py-5">
-  <h2>Register</h2>
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <input class="form-control my-2" formControlName="name" placeholder="Full Name">
-    <input class="form-control my-2" type="email" formControlName="email" placeholder="Email">
-    <input class="form-control my-2" type="password" formControlName="password" placeholder="Password">
-    <button class="btn btn-success" [disabled]="loading">{{ loading ? 'Loading...' : 'Create account' }}</button>
-    <a routerLink="/login" class="btn btn-link">Login</a>
-  </form>
-  <p class="text-danger mt-2" *ngIf="error">{{ error }}</p>
-</div>
+<section class="auth-page">
+  <div class="auth-card">
+    <p class="eyebrow">Get started today</p>
+    <h1>Create your secure account</h1>
+    <p class="subtext">Open your digital banking profile in minutes and start tracking your money.</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="auth-form">
+      <label>
+        Full name
+        <input formControlName="name" placeholder="Your name">
+      </label>
+
+      <label>
+        Email
+        <input type="email" formControlName="email" placeholder="you@example.com">
+      </label>
+
+      <label>
+        Password
+        <input type="password" formControlName="password" placeholder="At least 6 characters">
+      </label>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Creating account...' : 'Create account' }}
+      </button>
+
+      <p class="error" *ngIf="error">{{ error }}</p>
+    </form>
+
+    <p class="switch-auth">Already have an account? <a routerLink="/login">Sign in</a></p>
+  </div>
+</section>
