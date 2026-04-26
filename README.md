@@ -8,23 +8,24 @@ This repository now includes:
 
 ```text
 /workspace/Banking-System
-├── Controllers/
-│   ├── AuthController.cs
-│   └── AccountsController.cs
-├── DTOs/
-│   ├── AuthDtos.cs
-│   └── BankingDtos.cs
-├── Data/
-│   └── AppDbContext.cs
-├── Models/
-│   ├── User.cs
-│   ├── Account.cs
-│   └── Transaction.cs
-├── Services/
-│   ├── ITokenService.cs
-│   └── TokenService.cs
-├── Program.cs
-├── appsettings.json
+├── backend/
+│   ├── Controllers/
+│   │   ├── AuthController.cs
+│   │   └── AccountsController.cs
+│   ├── DTOs/
+│   │   ├── AuthDtos.cs
+│   │   └── BankingDtos.cs
+│   ├── Data/
+│   │   └── AppDbContext.cs
+│   ├── Models/
+│   │   ├── User.cs
+│   │   ├── Account.cs
+│   │   └── Transaction.cs
+│   ├── Services/
+│   │   ├── ITokenService.cs
+│   │   └── TokenService.cs
+│   ├── Program.cs
+│   └── appsettings.json
 └── frontend/
     └── src/app/
         ├── components/
@@ -38,11 +39,13 @@ This repository now includes:
 
 ### Packages
 ```bash
+cd backend
 dotnet restore
 ```
 
 ### Run backend
 ```bash
+cd backend
 dotnet run
 ```
 
@@ -157,7 +160,7 @@ All feature components include:
 
 Terminal 1:
 ```bash
-cd /workspace/Banking-System
+cd /workspace/Banking-System/backend
 dotnet run
 ```
 
