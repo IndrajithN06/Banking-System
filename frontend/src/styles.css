@@ -1,3 +1,11 @@
-/* src/styles.css */
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, Roboto, 'Helvetica Neue', sans-serif;
+  background:
+    radial-gradient(circle at 10% 20%, #dbeafe 0%, rgba(219, 234, 254, 0) 40%),
+    radial-gradient(circle at 80% 0%, #ede9fe 0%, rgba(237, 233, 254, 0) 38%),
+    linear-gradient(180deg, #f8fafc, #eef2ff 50%, #f8fafc);
+  color: #111827;
+}
