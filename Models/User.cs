@@ -1,14 +1,12 @@
-namespace Banking_System.Models
+namespace Banking_System.Models;
+
+public class User
 {
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string Email { get; set; } = string.Empty;
+    public string PasswordHash { get; set; } = string.Empty;
+    public string Role { get; set; } = "Customer";
 
-    public class User
-    {
-
-        public int Id { get; set; }
-        public string? Name { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Role { get; set; }
-    }
-
+    public Account? Account { get; set; }
 }

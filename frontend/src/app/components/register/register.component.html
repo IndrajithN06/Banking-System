@@ -1,0 +1,11 @@
+<div class="container py-5">
+  <h2>Register</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <input class="form-control my-2" formControlName="name" placeholder="Full Name">
+    <input class="form-control my-2" type="email" formControlName="email" placeholder="Email">
+    <input class="form-control my-2" type="password" formControlName="password" placeholder="Password">
+    <button class="btn btn-success" [disabled]="loading">{{ loading ? 'Loading...' : 'Create account' }}</button>
+    <a routerLink="/login" class="btn btn-link">Login</a>
+  </form>
+  <p class="text-danger mt-2" *ngIf="error">{{ error }}</p>
+</div>
