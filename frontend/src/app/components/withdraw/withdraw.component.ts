@@ -7,15 +7,8 @@ import { AccountService } from '../../services/account.service';
   selector: 'app-withdraw',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: `
-  <h4>Withdraw</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex gap-2">
-    <input class="form-control" type="number" formControlName="amount" placeholder="Amount">
-    <input class="form-control" type="text" formControlName="description" placeholder="Description">
-    <button class="btn btn-warning" [disabled]="loading">{{ loading ? 'Processing...' : 'Withdraw' }}</button>
-  </form>
-  <p class="text-success" *ngIf="message">{{ message }}</p>
-  <p class="text-danger" *ngIf="error">{{ error }}</p>`
+  templateUrl: './withdraw.component.html',
+  styleUrl: './withdraw.component.css'
 })
 export class WithdrawComponent {
   private readonly fb = inject(FormBuilder);
@@ -32,7 +25,7 @@ export class WithdrawComponent {
     this.error = '';
     const v = this.form.getRawValue();
     this.accountService.withdraw(Number(v.amount), v.description || '').subscribe({
-      next: res => this.message = `${res.message} New balance: ${res.data.balance}`,
+      next: res => this.message = `${res.message} New balance: ${res.data.balance.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}`,
       error: err => this.error = err?.error?.message ?? 'Withdraw failed.',
       complete: () => this.loading = false
     });

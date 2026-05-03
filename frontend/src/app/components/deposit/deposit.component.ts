@@ -7,15 +7,8 @@ import { AccountService } from '../../services/account.service';
   selector: 'app-deposit',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  template: `
-  <h4>Deposit</h4>
-  <form [formGroup]="form" (ngSubmit)="submit()" class="d-flex gap-2">
-    <input class="form-control" type="number" formControlName="amount" placeholder="Amount">
-    <input class="form-control" type="text" formControlName="description" placeholder="Description">
-    <button class="btn btn-success" [disabled]="loading">{{ loading ? 'Processing...' : 'Deposit' }}</button>
-  </form>
-  <p class="text-success" *ngIf="message">{{ message }}</p>
-  <p class="text-danger" *ngIf="error">{{ error }}</p>`
+  templateUrl: './deposit.component.html',
+  styleUrl: './deposit.component.css'
 })
 export class DepositComponent {
   private readonly fb = inject(FormBuilder);
@@ -32,7 +25,7 @@ export class DepositComponent {
     this.error = '';
     const v = this.form.getRawValue();
     this.accountService.deposit(Number(v.amount), v.description || '').subscribe({
-      next: res => this.message = `${res.message} New balance: ${res.data.balance}`,
+      next: res => this.message = `${res.message} New balance: ${res.data.balance.toLocaleString(undefined, { style: 'currency', currency: 'USD' })}`,
       error: err => this.error = err?.error?.message ?? 'Deposit failed.',
       complete: () => this.loading = false
     });

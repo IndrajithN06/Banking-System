@@ -1,0 +1,18 @@
+<section class="summary-grid">
+  <div class="balance-card panel panel-pad">
+    <p class="eyebrow">Available balance</p>
+    <div *ngIf="loading" class="skeleton"></div>
+    <p *ngIf="error" class="status error">{{ error }}</p>
+    <ng-container *ngIf="summary">
+      <h2>{{ summary.balance | currency }}</h2>
+      <p class="muted">Account #{{ summary.accountId }} owned by {{ summary.ownerEmail }}</p>
+    </ng-container>
+  </div>
+
+  <div class="panel panel-pad quick-card">
+    <p class="eyebrow">Account health</p>
+    <h3>Ready for everyday banking</h3>
+    <p class="muted">Your dashboard is set up for deposits, withdrawals, and transaction review.</p>
+    <div class="meter"><span></span></div>
+  </div>
+</section>

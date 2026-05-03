@@ -1,0 +1,14 @@
+.section-head { display: flex; justify-content: space-between; gap: 1rem; align-items: start; margin-bottom: 1rem; }
+h2 { margin: .25rem 0 0; }
+.count, .pill { border-radius: 999px; padding: .35rem .6rem; font-size: .82rem; font-weight: 800; white-space: nowrap; }
+.count { background: var(--surface-soft); color: var(--brand); }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 640px; }
+th { text-align: left; color: var(--muted); font-size: .8rem; text-transform: uppercase; }
+th, td { padding: .85rem .7rem; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+.pill { display: inline-flex; background: #ecfdf5; color: var(--success); }
+.pill.withdraw { background: #fff7ed; color: #9a3412; }
+.amount { color: var(--success); font-weight: 900; }
+.amount.withdraw { color: var(--danger); }
+.empty { margin: 0; padding: 1rem; border: 1px dashed var(--line); border-radius: 8px; }

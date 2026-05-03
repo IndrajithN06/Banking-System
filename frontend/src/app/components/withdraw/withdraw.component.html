@@ -1,0 +1,20 @@
+<section class="money-form panel panel-pad">
+  <p class="eyebrow">Move money out</p>
+  <h2>Withdraw funds</h2>
+  <p class="muted">Track withdrawals with a short description so every movement is easy to audit.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Amount
+      <input type="number" formControlName="amount" min="1" placeholder="0.00">
+    </label>
+    <label>
+      Description
+      <input type="text" formControlName="description" placeholder="ATM, bill payment, transfer">
+    </label>
+    <button class="primary-action withdraw-action" [disabled]="loading || form.invalid">{{ loading ? 'Processing...' : 'Withdraw funds' }}</button>
+  </form>
+
+  <p class="status success" *ngIf="message">{{ message }}</p>
+  <p class="status error" *ngIf="error">{{ error }}</p>
+</section>
