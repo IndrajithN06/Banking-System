@@ -6,14 +6,8 @@ import { AccountService } from '../../services/account.service';
   selector: 'app-account-summary',
   standalone: true,
   imports: [CommonModule],
-  template: `
-  <div *ngIf="loading">Loading account...</div>
-  <div *ngIf="error" class="text-danger">{{ error }}</div>
-  <div *ngIf="summary">
-    <h4>Account #{{ summary.accountId }}</h4>
-    <p><strong>Owner:</strong> {{ summary.ownerEmail }}</p>
-    <p><strong>Balance:</strong> {{ summary.balance | currency }}</p>
-  </div>`
+  templateUrl: './account-summary.component.html',
+  styleUrl: './account-summary.component.css'
 })
 export class AccountSummaryComponent implements OnInit {
   private readonly accountService = inject(AccountService);

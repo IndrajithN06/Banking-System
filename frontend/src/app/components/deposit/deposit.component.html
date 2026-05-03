@@ -1,0 +1,20 @@
+<section class="money-form panel panel-pad">
+  <p class="eyebrow">Add funds</p>
+  <h2>Deposit money</h2>
+  <p class="muted">Record incoming funds and keep a clear note for your history.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <label>
+      Amount
+      <input type="number" formControlName="amount" min="1" placeholder="0.00">
+    </label>
+    <label>
+      Description
+      <input type="text" formControlName="description" placeholder="Salary, refund, cash deposit">
+    </label>
+    <button class="primary-action" [disabled]="loading || form.invalid">{{ loading ? 'Processing...' : 'Deposit funds' }}</button>
+  </form>
+
+  <p class="status success" *ngIf="message">{{ message }}</p>
+  <p class="status error" *ngIf="error">{{ error }}</p>
+</section>

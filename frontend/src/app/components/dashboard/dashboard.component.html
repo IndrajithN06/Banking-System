@@ -1,0 +1,20 @@
+<main class="dashboard-shell">
+  <aside class="sidebar panel">
+    <div class="brand-mark">BS</div>
+    <div>
+      <p class="eyebrow">Banking System</p>
+      <h1>Dashboard</h1>
+    </div>
+    <nav class="dashboard-nav">
+      <a routerLink="summary" routerLinkActive="active">Summary</a>
+      <a routerLink="deposit" routerLinkActive="active">Deposit</a>
+      <a routerLink="withdraw" routerLinkActive="active">Withdraw</a>
+      <a routerLink="transactions" routerLinkActive="active">Transactions</a>
+    </nav>
+    <button class="logout" (click)="logout()">Logout</button>
+  </aside>
+
+  <section class="dashboard-content">
+    <router-outlet />
+  </section>
+</main>

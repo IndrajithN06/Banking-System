@@ -1,0 +1,27 @@
+<section class="panel panel-pad history">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Activity</p>
+      <h2>Transaction history</h2>
+    </div>
+    <span class="count" *ngIf="items.length">{{ items.length }} records</span>
+  </div>
+
+  <div *ngIf="loading" class="skeleton"></div>
+  <p class="status error" *ngIf="error">{{ error }}</p>
+  <p class="empty muted" *ngIf="!loading && !items.length && !error">No transactions yet.</p>
+
+  <div class="table-wrap" *ngIf="!loading && items.length">
+    <table>
+      <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr *ngFor="let item of items">
+          <td>{{ item.createdAtUtc | date:'medium' }}</td>
+          <td><span class="pill" [class.withdraw]="item.type === 'Withdraw'">{{ item.type }}</span></td>
+          <td class="amount" [class.withdraw]="item.type === 'Withdraw'">{{ item.amount | currency }}</td>
+          <td>{{ item.description || 'No description' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

@@ -6,21 +6,8 @@ import { AccountService } from '../../services/account.service';
   selector: 'app-transaction-history',
   standalone: true,
   imports: [CommonModule],
-  template: `
-  <h4>Transaction History</h4>
-  <div *ngIf="loading">Loading transactions...</div>
-  <p class="text-danger" *ngIf="error">{{ error }}</p>
-  <table class="table table-sm" *ngIf="!loading && items.length">
-    <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Description</th></tr></thead>
-    <tbody>
-      <tr *ngFor="let item of items">
-        <td>{{ item.createdAtUtc | date:'short' }}</td>
-        <td>{{ item.type }}</td>
-        <td>{{ item.amount | currency }}</td>
-        <td>{{ item.description }}</td>
-      </tr>
-    </tbody>
-  </table>`
+  templateUrl: './transaction-history.component.html',
+  styleUrl: './transaction-history.component.css'
 })
 export class TransactionHistoryComponent implements OnInit {
   private readonly accountService = inject(AccountService);

@@ -1,0 +1,5 @@
+h2 { margin: .3rem 0 .4rem; }
+form { display: grid; grid-template-columns: 1fr 1.4fr auto; gap: .85rem; align-items: end; margin-top: 1rem; }
+.withdraw-action { background: #9a3412; box-shadow: 0 12px 22px rgba(154, 52, 18, .18); }
+.withdraw-action:hover { background: #7c2d12; }
+@media (max-width: 860px) { form { grid-template-columns: 1fr; } }
