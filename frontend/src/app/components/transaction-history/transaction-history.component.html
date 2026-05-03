@@ -2,20 +2,68 @@
   <div class="section-head">
     <div>
       <p class="eyebrow">Activity</p>
-      <h2>Transaction history</h2>
+      <h2>Mini statement</h2>
     </div>
-    <span class="count" *ngIf="items.length">{{ items.length }} records</span>
+    <span class="count" *ngIf="items.length">{{ filteredItems.length }} of {{ items.length }} records</span>
   </div>
 
   <div *ngIf="loading" class="skeleton"></div>
   <p class="status error" *ngIf="error">{{ error }}</p>
   <p class="empty muted" *ngIf="!loading && !items.length && !error">No transactions yet.</p>
 
-  <div class="table-wrap" *ngIf="!loading && items.length">
+  <ng-container *ngIf="!loading && items.length">
+    <form class="filters" aria-label="Mini statement filters">
+      <label>
+        From date
+        <input type="date" name="fromDate" [(ngModel)]="fromDate">
+      </label>
+      <label>
+        To date
+        <input type="date" name="toDate" [(ngModel)]="toDate">
+      </label>
+      <label>
+        Type
+        <select name="typeFilter" [(ngModel)]="typeFilter">
+          <option value="All">All transactions</option>
+          <option value="Deposit">Deposits</option>
+          <option value="Withdraw">Withdrawals</option>
+        </select>
+      </label>
+      <label>
+        Min amount
+        <input type="number" name="minAmount" [(ngModel)]="minAmount" min="0" placeholder="0.00">
+      </label>
+      <label>
+        Max amount
+        <input type="number" name="maxAmount" [(ngModel)]="maxAmount" min="0" placeholder="Any">
+      </label>
+      <button type="button" class="secondary-action" (click)="clearFilters()">Clear</button>
+    </form>
+
+    <div class="statement-summary">
+      <article>
+        <span>Total deposits</span>
+        <strong>{{ totalDeposits | currency }}</strong>
+      </article>
+      <article>
+        <span>Total withdrawals</span>
+        <strong class="withdraw">{{ totalWithdrawals | currency }}</strong>
+      </article>
+      <article>
+        <span>Net movement</span>
+        <strong [class.withdraw]="netMovement < 0">{{ netMovement | currency }}</strong>
+      </article>
+      <button type="button" class="primary-action export" [disabled]="!filteredItems.length" (click)="exportCsv()">Export CSV</button>
+    </div>
+
+    <p class="empty muted" *ngIf="!filteredItems.length">No transactions match the selected filters.</p>
+  </ng-container>
+
+  <div class="table-wrap" *ngIf="!loading && filteredItems.length">
     <table>
       <thead><tr><th>Date</th><th>Type</th><th>Amount</th><th>Description</th></tr></thead>
       <tbody>
-        <tr *ngFor="let item of items">
+        <tr *ngFor="let item of filteredItems">
           <td>{{ item.createdAtUtc | date:'medium' }}</td>
           <td><span class="pill" [class.withdraw]="item.type === 'Withdraw'">{{ item.type }}</span></td>
           <td class="amount" [class.withdraw]="item.type === 'Withdraw'">{{ item.amount | currency }}</td>
